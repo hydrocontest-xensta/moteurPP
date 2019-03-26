@@ -130,7 +130,7 @@ StartDefaultTask(void const* argument)
   char tick[] = "tick\r\n";
   /* Infinite loop */
   for (;;) {
-    HAL_UART_Transmit(&huart2, tick, 6, 0xFFFF);
+    HAL_UART_Transmit(&huart2, (uint8_t*)tick, 6, 0xFFFF);
     HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
     osDelay(1000);
   }
@@ -154,7 +154,8 @@ startGetMessageTk(void const* argument)
 
   for (;;) {
     // xSemaphoreTake(messageReceptionSemHandle);
-    int8_t msg_len = receiveMessage(message, 33);
+    // int8_t msg_len = receiveMessage(message, 33);
+    int8_t msg_len = -1;
     if (msg_len != -1) {
       char out_log[32];
       snprintf(out_log, 48, "got [%s]\r\n", message);
