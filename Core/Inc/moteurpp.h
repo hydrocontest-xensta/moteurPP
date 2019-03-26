@@ -1,6 +1,8 @@
 #if !defined(MOTEURPP_H)
 #define MOTEURPP_H
 
+#include "cmsis_os.h"
+
 enum mpp
 {
   MAX_TELEGRAM_SIZE_bytes = 64,
@@ -23,7 +25,15 @@ struct mpp_payload
   uint8_t crc;
 };
 
-
+struct status_word
+{
+  uint8_t ready_switch_on:1;
+  uint8_t switched_on:1;
+  uint8_t operation_enabled:1;
+  uint8_t fault:1;
+  uint8_t quick_stop:1;
+  uint8_t switch_on_disabled:1;
+};
 
 // *Low-level API
 uint8_t
