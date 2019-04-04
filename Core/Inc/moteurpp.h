@@ -2,6 +2,7 @@
 #define MOTEURPP_H
 
 #include "cmsis_os.h"
+#include "usart.h"
 
 enum mpp
 {
@@ -34,6 +35,12 @@ struct status_word
   uint8_t quick_stop:1;
   uint8_t switch_on_disabled:1;
 };
+
+struct mpp_config
+{
+  UART_HandleTypeDef huart;
+  
+}
 
 // *Low-level API
 uint8_t
